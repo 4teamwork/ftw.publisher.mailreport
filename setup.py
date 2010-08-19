@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0-dev'
+version = open('ftw/publisher/mailreport/version.txt').read().strip()
 maintainer = 'Jonas Baumann'
 
 setup(name='ftw.publisher.mailreport',
