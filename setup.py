@@ -26,6 +26,7 @@ setup(name='ftw.publisher.mailreport',
       zip_safe=False,
       install_requires=[
         'setuptools',
+        'z3c.autoinclude',
         # -*- Extra requirements: -*-
         ],
       entry_points="""
