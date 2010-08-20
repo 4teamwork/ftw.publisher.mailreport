@@ -9,4 +9,18 @@
   <include package="z3c.autoinclude" file="meta.zcml" />
   <includeDependencies package="." />
 
+  <include package=".browser" />
+
+  <subscriber
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot
+           ftw.publisher.sender.interfaces.IQueueExecutedEvent"
+      handler=".handlers.invoke_notification"
+      />
+
+  <adapter
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      provides="ftw.publisher.mailreport.interfaces.IReportNotifier"
+      factory=".adapters.MailReportNotifier"
+      />
+
 </configure>

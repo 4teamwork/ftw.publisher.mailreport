@@ -27,6 +27,8 @@ setup(name='ftw.publisher.mailreport',
       install_requires=[
         'setuptools',
         'z3c.autoinclude',
+        'ftw.publisher.sender',
+        'plone.fieldsets',
         # -*- Extra requirements: -*-
         ],
       entry_points="""
