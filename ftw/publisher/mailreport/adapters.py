@@ -103,5 +103,6 @@ class MailReportNotifier(object):
         return data
 
     def render_template(self):
-        template = self.context.restrictedTraverse('@@mail_notification_html')
+        template = self.context.restrictedTraverse(
+            '@@publisher-notification-mail_notification_html')
         return template(**self.get_options())

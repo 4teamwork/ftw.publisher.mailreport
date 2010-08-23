@@ -21,7 +21,7 @@
       />
 
   <browser:page
-      name="mail_notification_html"
+      name="publisher-notification-mail_notification_html"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       template="mail_templates/notification_mail_html.pt"
       permission="zope2.View"
