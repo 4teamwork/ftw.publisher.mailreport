@@ -34,14 +34,17 @@ Go to the configuration view:
     True
 
 Fill the form:
-    >>> browser.getControl(name='form.enabled').value == False
-    True
+    >>> browser.getControl(name='form.enabled').value
+    False
     >>> browser.getControl(name='form.enabled').value = True
-    >>> browser.getControl(name='form.detailed_report').value == False
-    True
+    >>> browser.getControl(name='form.detailed_report').value
+    False
     >>> browser.getControl(name='form.detailed_report').value = True
-    >>> browser.getControl(name='form.receivers').value == ''
-    True
+    >>> browser.getControl(name='form.interval').value
+    ['daily']
+    >>> browser.getControl(name='form.interval').value = ('weekly',)
+    >>> browser.getControl(name='form.receivers').value
+    ''
     >>> browser.getControl(name='form.receivers').value = 'my@test.local'
     >>> browser.getControl(name='form.actions.button_save').click()
 
@@ -57,12 +60,14 @@ Reload the page:
     True
 
 Check the form fields:
-    >>> browser.getControl(name='form.enabled').value == True
+    >>> browser.getControl(name='form.enabled').value
     True
-    >>> browser.getControl(name='form.detailed_report').value == True
+    >>> browser.getControl(name='form.detailed_report').value
     True
-    >>> browser.getControl(name='form.receivers').value == 'my@test.local'
-    True
+    >>> browser.getControl(name='form.interval').value
+    ['weekly']
+    >>> browser.getControl(name='form.receivers').value
+    'my@test.local'
 
 The receivers are validated (valid email addresses required):
     >>> browser.getControl(name='form.receivers').value = 'bad value'

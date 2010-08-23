@@ -91,6 +91,14 @@ class NotifierConfigurationAdapter(SchemaAdapterBase):
 
     detailed_report = property(get_detailed_report, set_detailed_report)
 
+    def get_interval(self):
+        return self.storage.get('interval', 'daily')
+
+    def set_interval(self, value):
+        self.storage['interval'] = value
+
+    interval = property(get_interval, set_interval)
+
     def get_receivers_plain(self):
         return self.storage.get('receivers', '')
 
