@@ -1,3 +1,4 @@
+from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.formlib.schema import SchemaAdapterBase
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -151,5 +152,6 @@ class NotificationConfigurationForm(FieldsetsEditForm):
         """"Cancel" button handler.
         """
         portal = getSite()
-        url = portal.portal_url() + '/@@publisher-config'
+        portal_url = getToolByName(self.context, 'portal_url')()
+        url = portal_url + '/@@publisher-config'
         return portal.REQUEST.RESPONSE.redirect(url)

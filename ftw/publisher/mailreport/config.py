@@ -3,6 +3,10 @@ from datetime import timedelta
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
 
+# annotation key of the date, when the last notification was triggered
+LAST_NOTIFICATIONS_KEY = 'ftw.publisher.mailreport-last-notification'
+
+
 INTERVAL_CONFIG = (
     # stored value, label i18n key, datetime dict
     ('hourly', u'interval_hourly', timedelta(hours=1)),
