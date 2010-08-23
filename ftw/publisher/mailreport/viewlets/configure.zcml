@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ftw.publisher.mailreport">
+
+  <browser:viewlet
+      name="ftw.publisher.mailreport-config-link"
+      manager="ftw.publisher.sender.interfaces.IConfigletViewletManager"
+      class=".link.MailreportConfigLink"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="cmf.ManagePortal"
+      />
+
+</configure>

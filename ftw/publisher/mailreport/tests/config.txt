@@ -1,13 +1,11 @@
 Use the testbrowser for testing the configuration.
 
-# XXX: test the viewlet
-
 Create a browser:
     >>> from Products.Five.testbrowser import Browser
     >>> browser = Browser()
     >>> portal_url = self.portal.absolute_url()
 
-Login:
+Login as admin:
     >>> from Products.PloneTestCase.setup import portal_owner, default_password
     >>> browser.open(portal_url + '/login')
     >>> browser.getControl(name='__ac_name').value = portal_owner
@@ -16,8 +14,21 @@ Login:
     >>> 'logged in' in browser.contents
     True
 
-Go to the configuration view:
+The notifier configuration url
     >>> url = portal_url + '/@@publisher-notification-config'
+
+Go to the publisher configuration and check the viewlet with the link:
+    >>> main_config_url = portal_url + '/@@publisher-config'
+    >>> browser.open(main_config_url)
+    >>> browser.url == main_config_url
+    True
+    >>> 'Notifier configuration' in browser.contents
+    True
+    >>> browser.getLink(url=url).click()
+    >>> browser.url == url
+    True
+
+Go to the configuration view:
     >>> browser.open(url)
     >>> browser.url == url
     True
