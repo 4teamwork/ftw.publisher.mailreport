@@ -1,0 +1,89 @@
+<html i18n:domain="ftw.publisher.mailreport">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title></title>
+  </head>
+  <body>
+    <h1 tal:content="options/subject">
+    </h1>
+
+    <b i18n:translate="mail_statistics">Statistics</b>
+    <table>
+      <tr>
+        <th i18n:translate="mail_th_success">Successfull jobs:</th>
+        <td tal:content="options/success"></td>
+      </tr>
+      <tr>
+        <th i18n:translate="mail_th_warning">Jobs with warning:</th>
+        <td tal:content="options/warning"></td>
+      </tr>
+      <tr>
+        <th i18n:translate="mail_th_error">Jobs with errors</th>
+        <td tal:content="options/error"></td>
+      </tr>
+      <tr>
+        <th i18n:translate="mail_th_total">Total executed jobs</th>
+        <td tal:content="options/total"></td>
+      </tr>
+      <tr>
+        <th i18n:translate="mail_th_jobs_in_queue">Jobs in the queue</th>
+        <td tal:content="options/jobs_in_queue"></td>
+      </tr>
+    </table>
+
+    <tal:SHOW_DETAILS tal:condition="options/show_details">
+
+      <h2 i18n:translate="mail_headline_details">Erroneous jobs details</h2>
+
+      <div class="job" tal:repeat="job options/erroneous_jobs">
+
+        <table i18n:domain="ftw.publisher.sender">
+          <tr>
+            <th i18n:translate="th_title">Title</th>
+            <td><a href="" tal:content="job/objectTitle"
+                   tal:attributes="href job/objectPath"></a></td>
+          </tr>
+          <tr>
+            <th i18n:translate="th_path">Path</th>
+            <td tal:content="job/objectPath" />
+          </tr>
+          <tr>
+            <th i18n:translate="th_action">Action</th>
+<!--             <td tal:content="view/get_translated_action" /> -->
+          </tr>
+          <tr>
+            <th i18n:translate="th_username">Username</th>
+            <td tal:content="job/username" />
+          </tr>
+          <tr>
+            <th i18n:translate="th_data_length">Data length</th>
+            <td><span tal:replace="job/getSize" /> bytes</td>
+          </tr>
+        </table>
+
+        <tal:RUN tal:repeat="run job/executed_list"
+                 i18n:domain="ftw.publisher.sender">
+          <div class="run">
+            <b tal:content="run/date" /><br />
+            <tal:REALM tal:repeat="entry run/items">
+              <tal:not_date tal:condition="python:entry[0] != 'date'">
+                <i>
+                  <i18n:realm i18n:translate="">Realm:</i18n:realm>
+                  <span tal:replace="python:entry[0].username" /> @
+                  <span tal:replace="python:entry[0].url" />
+                </i><br/>
+<!--                 <div tal:content="python:view.get_translated_state_name(entry[1])" /> -->
+                <pre class="state" tal:content="python:entry[1].toString()" />
+              </tal:not_date>
+            </tal:REALM>
+            <hr />
+          </div>
+        </tal:RUN>
+
+
+      </div>
+
+    </tal:SHOW_DETAILS>
+
+  </body>
+</html>
