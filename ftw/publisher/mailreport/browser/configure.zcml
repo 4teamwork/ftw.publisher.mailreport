@@ -13,4 +13,11 @@
       permission="cmf.ManagePortal"
       />
 
+  <browser:page
+      name="publisher-notification-trigger-notification"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".notification.TriggerNotification"
+      permission="cmf.ManagePortal"
+      />
+
 </configure>
