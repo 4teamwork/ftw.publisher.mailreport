@@ -1,20 +1,15 @@
-from Products.CMFDefault.formlib.schema import SchemaAdapterBase
-from plone.fieldsets.form import FieldsetsEditForm
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from persistent.list import PersistentList
-from persistent.dict import PersistentDict
-from Products.CMFPlone.interfaces import IPloneSiteRoot
-from ftw.publisher.mailreport import _
 from z3c.form.button import buttonAndHandler
-from zope.formlib import form
-from z3c.form.validator import SimpleFieldValidator
-from z3c.form.validator import WidgetValidatorDiscriminators
-from zope import schema
+from Products.CMFDefault.formlib.schema import SchemaAdapterBase
+from Products.CMFPlone.interfaces import IPloneSiteRoot
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from ftw.publisher.mailreport import _
+from ftw.publisher.mailreport.interfaces import INotifierConfigurationSchema
+from persistent.dict import PersistentDict
+from plone.fieldsets.form import FieldsetsEditForm
 from zope.annotation.interfaces import IAnnotations
 from zope.app.component.hooks import getSite
 from zope.component import adapts
-from zope.component import provideAdapter
-from zope.interface import Interface
+from zope.formlib import form
 from zope.interface import Invalid
 from zope.interface import implements
 import re
@@ -23,63 +18,23 @@ import re
 ANNOTATIONS_KEY = 'ftw.publisher.mailqueue-configuration'
 
 
-class INotifierConfigurationSchema(Interface):
-    """Schema interface for notifier configuration.
+def email_addresses_validator(value):
+    """Validator for validating the e-mail addresses field.
+    `value` is a string of carriage-return-seperated bulk of e-mail addresses.
+    Returns `True` if all addresses are valid, otherwise `False`.
     """
 
-    enabled = schema.Bool(
-        title=_(u'label_notification_enabled',
-                default=u'Notification enabled'))
+    expr = re.compile(r"^(\w&.%#$&'\*+-/=?^_`{}|~]+!)*[\w&.%#$&'\*+-/=" +\
+                          "?^_`{}|~]+@(([0-9a-z]([0-9a-z-]*[0-9a-z])?" +\
+                          "\.)+[a-z]{2,6}|([0-9]{1,3}\.){3}[0-9]{1,3})$",
+                      re.IGNORECASE)
 
-    detailed_report = schema.Bool(
-        title=_(u'label_detailed_report',
-                default=u'Detailed report'),
-        description=_(u'help_detailed_report',
-                      default=u'Include details of erroneous jobs.'))
-
-    receivers = schema.Text(
-        title=_(u'label_receivers', default=u'Receivers'),
-        description=_(u'help_receivers',
-                      default=u'Enter one e-mail address per line.'))
-
-
-class AddressesValidator(SimpleFieldValidator):
-    """Validator for validating the e-mail addresses field
-    """
-
-    MAIL_EXPRESSION = r"^(\w&.%#$&'\*+-/=?^_`{}|~]+!)*[\w&.%#$&'\*+-/=" +\
-        "?^_`{}|~]+@(([0-9a-z]([0-9a-z-]*[0-9a-z])?" +\
-        "\.)+[a-z]{2,6}|([0-9]{1,3}\.){3}[0-9]{1,3})$"
-
-    def __init__(self, *args, **kwargs):
-        super(AddressesValidator, self).__init__(*args, **kwargs)
-        self.email_expression = re.compile(AddressesValidator.MAIL_EXPRESSION,
-                                           re.IGNORECASE)
-
-    def validate(self, value):
-        """Validates the `value`, expects a list of carriage-return-separated
-        email addresses.
-
-        """
-        super(AddressesValidator, self).validate(value)
-        addresses = value.strip().split('\n')
-        self._validate_addresses(addresses)
-
-    def _validate_addresses(self, addresses):
-        """E-Mail address validation
-        """
-        for addr in addresses:
-            addr = addr.strip()
-            if not self.email_expression.match(addr):
-                msg = _(u'error_invalid_addresses',
-                        default=u'At least one of the defined addresses '
-                        'are not valid.')
-                raise Invalid(msg)
-
-
-WidgetValidatorDiscriminators(AddressesValidator,
-                              field=INotifierConfigurationSchema['receivers'])
-provideAdapter(AddressesValidator)
+    addresses = value.strip().split('\n')
+    for addr in addresses:
+        addr = addr.strip()
+        if not expr.match(addr):
+            return False
+    return True
 
 
 class NotifierConfigurationAdapter(SchemaAdapterBase):
@@ -90,11 +45,11 @@ class NotifierConfigurationAdapter(SchemaAdapterBase):
     implements(INotifierConfigurationSchema)
 
     def __init__(self, context):
-        super(NotifierConfigurationAdapter, self).__init__(self, context)
+        super(NotifierConfigurationAdapter, self).__init__(self)
         self.annotations = IAnnotations(context)
         self.storage = self.annotations.get(ANNOTATIONS_KEY, None)
         if not isinstance(self.storage, PersistentDict):
-            self.annotations[ANNOTATIONS_KEY] = PersistentList()
+            self.annotations[ANNOTATIONS_KEY] = PersistentDict()
             self.storage = self.annotations.get(ANNOTATIONS_KEY)
 
     def is_enabled(self):
@@ -113,37 +68,57 @@ class NotifierConfigurationAdapter(SchemaAdapterBase):
 
     detailed_report = property(get_detailed_report, set_detailed_report)
 
+    def get_receivers_plain(self):
+        return self.storage.get('receivers', '')
+
     def get_receivers(self):
-        return self.storage.get('receivers', [])
+        """Get receivers as list
+        """
+        data = self.storage.get('receivers', '')
+        if data:
+            return data.split('\n')
+        else:
+            return []
 
-    def set_receivers(self, value):
-        self.storage['receivers'] = PersistentList(value)
+    def set_receivers_plain(self, value):
+        self.storage['receivers'] = value
 
-    receivers = property(get_receivers, set_receivers)
-        
+    receivers = property(get_receivers_plain, set_receivers_plain)
+
 
 class NotificationConfigurationForm(FieldsetsEditForm):
     """Notification confugration form
     """
-    
+
     template = ViewPageTemplateFile('config.pt')
 
     label = _(u'label_notifier_configuration',
               default=u'Notifier configuration')
+    description = _(u'help_notifier_configuration',
+                    default=u'Publisher notification configuration')
+
     form_name = label
     form_fields = form.FormFields(INotifierConfigurationSchema)
 
-    @buttonAndHandler(_(u'button_save', default=u'Save'))
-    def handle_save(self, action):
+    @form.action(_(u'button_save', default=u'Save'))
+    def handle_edit_action(self, action, data):
         """"Save" button handler.
         """
-        import pdb; pdb.set_trace()
-        
-        
-    @buttonAndHandler(_(u'button_cancel', default=u'Cancel'))
-    def handle_cancel(self, action):
+        if not email_addresses_validator(data.get('receivers')):
+            self.status = _(u'error_invalid_addresses',
+                            default=u'At least one of the defined addresses '
+                            'are not valid.')
+        else:
+            # call the super handle_edit_action, but the method is
+            # wrapped in a @form.action(), so we need to extract it...
+            super_action = FieldsetsEditForm.handle_edit_action
+            super_action_method = super_action.success_handler
+            return super_action_method(self, action, data)
+
+    @form.action(_(u'button_cancel', default=u'Cancel'))
+    def handle_cancel(self, action, data):
         """"Cancel" button handler.
         """
         portal = getSite()
-        url = portal.portal_url.getPortalObject() + '/@@publisher-config'
-        return portal.RESPONSE.redirect(url)
+        url = portal.portal_url() + '/@@publisher-config'
+        return portal.REQUEST.RESPONSE.redirect(url)

@@ -1,0 +1,13 @@
+Use the testbrowser for testing the configuration.
+
+# XXX: test the viewlet
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+
+Go to the configuration view:
+    >>> portal_url = self.portal.absolute_url()
+    >>> browser.open(portal_url + '/@@publisher-notification-config')
+    >>> browser.getControl(name='form.enabled')
+    peter
+
