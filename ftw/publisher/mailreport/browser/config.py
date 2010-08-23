@@ -1,4 +1,3 @@
-from z3c.form.button import buttonAndHandler
 from Products.CMFDefault.formlib.schema import SchemaAdapterBase
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -10,7 +9,6 @@ from zope.annotation.interfaces import IAnnotations
 from zope.app.component.hooks import getSite
 from zope.component import adapts
 from zope.formlib import form
-from zope.interface import Invalid
 from zope.interface import implements
 import re
 
@@ -22,6 +20,31 @@ def email_addresses_validator(value):
     """Validator for validating the e-mail addresses field.
     `value` is a string of carriage-return-seperated bulk of e-mail addresses.
     Returns `True` if all addresses are valid, otherwise `False`.
+
+    >>> from ftw.publisher.mailreport.browser import config
+    >>> validate = config.email_addresses_validator
+
+    Some tests:
+
+    >>> validate('hugo.boss@web.de')
+    True
+    >>> validate('''hugo.boss@web.de
+    ... hugo.boss@web.de''')
+    True
+    >>> validate('1my@mail.de')
+    True
+    >>> validate('info@4teamwork.ch')
+    True
+    >>> validate('my-very.special-mail@ver.y.spec.ial.do.main.com')
+    True
+
+    Local E-Mail addresses work too:
+
+    >>> validate('me@home.local')
+    True
+    >>> validate('me@local')
+    False
+
     """
 
     expr = re.compile(r"^(\w&.%#$&'\*+-/=?^_`{}|~]+!)*[\w&.%#$&'\*+-/=" +\
