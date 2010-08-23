@@ -2,12 +2,67 @@ Use the testbrowser for testing the configuration.
 
 # XXX: test the viewlet
 
+Create a browser:
     >>> from Products.Five.testbrowser import Browser
     >>> browser = Browser()
+    >>> portal_url = self.portal.absolute_url()
+
+Login:
+    >>> from Products.PloneTestCase.setup import portal_owner, default_password
+    >>> browser.open(portal_url + '/login')
+    >>> browser.getControl(name='__ac_name').value = portal_owner
+    >>> browser.getControl(name='__ac_password').value = default_password
+    >>> browser.getControl(name='submit').click()
+    >>> 'logged in' in browser.contents
+    True
 
 Go to the configuration view:
-    >>> portal_url = self.portal.absolute_url()
-    >>> browser.open(portal_url + '/@@publisher-notification-config')
-    >>> browser.getControl(name='form.enabled')
-    peter
+    >>> url = portal_url + '/@@publisher-notification-config'
+    >>> browser.open(url)
+    >>> browser.url == url
+    True
 
+Fill the form:
+    >>> browser.getControl(name='form.enabled').value == False
+    True
+    >>> browser.getControl(name='form.enabled').value = True
+    >>> browser.getControl(name='form.detailed_report').value == False
+    True
+    >>> browser.getControl(name='form.detailed_report').value = True
+    >>> browser.getControl(name='form.receivers').value == ''
+    True
+    >>> browser.getControl(name='form.receivers').value = 'my@test.local'
+    >>> browser.getControl(name='form.actions.button_save').click()
+
+We are still at the same page, changes were stored:
+    >>> browser.url == url
+    True
+    >>> 'Updated on' in browser.contents
+    True
+
+Reload the page:
+    >>> browser.open(url)
+    >>> browser.url == url
+    True
+
+Check the form fields:
+    >>> browser.getControl(name='form.enabled').value == True
+    True
+    >>> browser.getControl(name='form.detailed_report').value == True
+    True
+    >>> browser.getControl(name='form.receivers').value == 'my@test.local'
+    True
+
+The receivers are validated (valid email addresses required):
+    >>> browser.getControl(name='form.receivers').value = 'bad value'
+    >>> browser.getControl(name='form.actions.button_save').click()
+    >>> browser.url == url
+    True
+    >>> 'At least one of the defined addresses are not valid.' in browser.contents
+    True
+
+The changes should not be saved when a error occured. So lets reload
+and check:
+    >>> browser.open(url)
+    >>> browser.getControl(name='form.receivers').value == 'my@test.local'
+    True
