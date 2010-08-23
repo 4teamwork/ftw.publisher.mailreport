@@ -4,6 +4,11 @@ import os
 version = open('ftw/publisher/mailreport/version.txt').read().strip()
 maintainer = 'Jonas Baumann'
 
+tests_require = [
+    'collective.testcaselayer',
+    ]
+
+
 setup(name='ftw.publisher.mailreport',
       version=version,
       description="Sends scheduled status report mails (for ftw.publisher)" +\
@@ -31,7 +36,11 @@ setup(name='ftw.publisher.mailreport',
         'plone.fieldsets',
         # -*- Extra requirements: -*-
         ],
+      tests_require=tests_require,
+      extras_require=dict(tests=tests_require),
       entry_points="""
       # -*- Entry points: -*-
+      [z3c.autoinclude.plugin]
+      target = plone
       """,
       )
