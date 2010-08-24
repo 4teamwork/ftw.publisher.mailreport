@@ -1,5 +1,6 @@
 from ftw.publisher.mailreport.interfaces import IReportNotifier
 from ftw.publisher.mailreport.utils import is_interval_expired
+from ftw.publisher.mailreport.interfaces import INotifierConfigurationSchema
 
 
 def invoke_notification(obj, event):
@@ -7,5 +8,6 @@ def invoke_notification(obj, event):
     `IReportNotifier` adapter.
     
     """
-    if is_interval_expired():
+    config = INotifierConfigurationSchema(obj)
+    if config.enabled and is_interval_expired():
         return IReportNotifier(obj)()
