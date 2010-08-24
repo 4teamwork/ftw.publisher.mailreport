@@ -1,0 +1,119 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2010-08-24 12:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: ftw.publisher.mailreport\n"
+
+#. Default: "Cancel"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/config.py:150
+msgid "button_cancel"
+msgstr ""
+
+#. Default: "Save"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/config.py:135
+msgid "button_save"
+msgstr ""
+
+#. Default: "At least one of the defined addresses are not valid."
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/config.py:140
+msgid "error_invalid_addresses"
+msgstr ""
+
+#. Default: "Include details of erroneous jobs."
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:25
+msgid "help_detailed_report"
+msgstr ""
+
+#. Default: "Approximate notification interval. The notification is attached to the publisher execute job."
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:31
+msgid "help_interval"
+msgstr ""
+
+#. Default: "Publisher notification configuration"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/config.py:129
+msgid "help_notifier_configuration"
+msgstr ""
+
+#. Default: "Enter one e-mail address per line."
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:39
+msgid "help_receivers"
+msgstr ""
+
+#. Default: "Detailed report"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:23
+msgid "label_detailed_report"
+msgstr ""
+
+#. Default: "Interval"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:29
+msgid "label_interval"
+msgstr ""
+
+#. Default: "Notification enabled"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:19
+msgid "label_notification_enabled"
+msgstr ""
+
+#. Default: "Notifier configuration"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/config.py:127
+msgid "label_notifier_configuration"
+msgstr ""
+
+#. Default: "Receivers"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:38
+msgid "label_receivers"
+msgstr ""
+
+#. Default: "Notifier configuration"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/viewlets/link.pt:3
+msgid "link_notifier_configuration"
+msgstr ""
+
+#. Default: "Erroneous jobs details"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:35
+msgid "mail_headline_details"
+msgstr ""
+
+#. Default: "Publisher report: ${site}"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/adapters.py:54
+msgid "mail_subject"
+msgstr ""
+
+#. Default: "Jobs with errors:"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:20
+msgid "mail_th_error"
+msgstr ""
+
+#. Default: "Jobs in the queue:"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:28
+msgid "mail_th_jobs_in_queue"
+msgstr ""
+
+#. Default: "Successfull jobs:"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:12
+msgid "mail_th_success"
+msgstr ""
+
+#. Default: "Total executed jobs:"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:24
+msgid "mail_th_total"
+msgstr ""
+
+#. Default: "Jobs with warning:"
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:16
+msgid "mail_th_warning"
+msgstr ""
+
