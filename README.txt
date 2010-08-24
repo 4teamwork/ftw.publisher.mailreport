@@ -1,7 +1,7 @@
 Introduction
 ============
 
-This package is a plugin for the `ftw.publisher` products. It adds a 
+This package is a plugin for the `ftw.publisher` products. It adds a
 confguration option to the `ftw.publisher` control panel.
 
 The package sends - when enabled - in a defined interval (e.g. each
