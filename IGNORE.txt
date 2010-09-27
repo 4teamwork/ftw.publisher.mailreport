@@ -3,3 +3,5 @@
 ftw.publisher.mailreport.egg-info
 build
 dist
+*.pyc
+*.mo
