@@ -51,9 +51,10 @@ class MailReportNotifier(object):
             mh.secureSend(msg, mto=rcpt, mfrom=from_addr, subject=subject)
 
     def get_subject(self):
-        return _(u'mail_subject',
-                 default=u'Publisher report: ${site}',
-                 mapping=dict(site=self.context.getProperty('title')))
+        return self.context.translate(
+            _(u'mail_subject',
+              default=u'Publisher report: ${site}',
+              mapping=dict(site=self.context.getProperty('title'))))
 
     def get_configuration(self):
         """Returns the configuration adapter.
@@ -73,7 +74,8 @@ class MailReportNotifier(object):
                 'jobs_in_queue': 0,
                 'erroneous_jobs': [],
                 'show_details': config.detailed_report,
-                'subject': self.get_subject()}
+                'subject': self.get_subject(),
+                'portal': self.context}
 
         # count the jobs by group and total
         for key, job in queue.get_executed_jobs():

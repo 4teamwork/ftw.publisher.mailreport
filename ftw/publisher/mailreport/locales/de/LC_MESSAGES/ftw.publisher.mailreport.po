@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-24 12:26+0000\n"
-"PO-Revision-Date: 2010-08-24 14:31+0200\n"
+"POT-Creation-Date: 2011-01-13 12:54+0000\n"
+"PO-Revision-Date: 2011-01-13 13:55+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -46,6 +46,18 @@ msgstr "Konfiguration der Benachrichtigungen"
 #: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:39
 msgid "help_receivers"
 msgstr "Eine E-Mail Adresse pro Zeile"
+
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/config.py:13
+msgid "interval_daily"
+msgstr "Täglich"
+
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/config.py:12
+msgid "interval_hourly"
+msgstr "Stündlich"
+
+#: ftw.publisher.mailreport/ftw/publisher/mailreport/config.py:14
+msgid "interval_weekly"
+msgstr "Wöchentlich"
 
 #. Default: "Detailed report"
 #: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:23

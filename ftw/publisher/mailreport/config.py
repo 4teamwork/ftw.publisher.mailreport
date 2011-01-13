@@ -9,9 +9,9 @@ LAST_NOTIFICATIONS_KEY = 'ftw.publisher.mailreport-last-notification'
 
 INTERVAL_CONFIG = (
     # stored value, label i18n key, datetime dict
-    ('hourly', u'interval_hourly', timedelta(hours=1)),
-    ('daily',  u'interval_daily',  timedelta(days=1)),
-    ('weekly', u'interval_weekly', timedelta(days=7)),
+    ('hourly', _(u'interval_hourly'), timedelta(hours=1)),
+    ('daily',  _(u'interval_daily'),  timedelta(days=1)),
+    ('weekly', _(u'interval_weekly'), timedelta(days=7)),
     )
 
 
