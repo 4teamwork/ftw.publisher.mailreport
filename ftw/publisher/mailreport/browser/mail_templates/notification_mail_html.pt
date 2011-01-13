@@ -7,6 +7,9 @@
     <h1 tal:content="options/subject">
     </h1>
 
+    <a tal:attributes="href options/portal/absolute_url"
+       tal:content="options/portal/absolute_url" />
+
     <table>
       <tr>
         <th i18n:translate="mail_th_success">Successfull jobs:</th>

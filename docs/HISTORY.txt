@@ -5,6 +5,9 @@ Changelog
 1.1
 ---
 
+* Added portal url to mail.
+  [jbaumann]
+
 * Translated configuration interval.
   [jbaumann]
 
