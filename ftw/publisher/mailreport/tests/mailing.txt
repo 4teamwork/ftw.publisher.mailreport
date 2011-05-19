@@ -79,14 +79,20 @@ So lets test the mailreport notifier adapter:
     <ftw.publisher.mailreport.adapters.MailReportNotifier object at ...>
     >>> data = notifier.get_options().items()
     >>> data.sort()
+
+    >>> print data[0][0]
+    erroneous_jobs
+    >>> print data[0][1]
+    [<ftw.publisher.sender.persistence.Job object at ...>,
+     <ftw.publisher.sender.persistence.Job object at ...>]
+
+    >>> data = filter(lambda x: x[0] not in ('erroneous_jobs', 'portal'), data)
+
     >>> pprint(data)
-    [('erroneous_jobs',
-      [<ftw.publisher.sender.persistence.Job object at ...>,
-       <ftw.publisher.sender.persistence.Job object at ...>]),
-     ('error', 2),
+    [('error', 2),
      ('jobs_in_queue', 0),
      ('show_details', True),
-     ('subject', u'mail_subject'),
+     ('subject', u'Publisher report: Plone site'),
      ('success', 1),
      ('total', 3),
      ('warning', 0)]
