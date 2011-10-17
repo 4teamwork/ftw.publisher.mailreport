@@ -86,7 +86,7 @@ class MailReportNotifier(object):
 
             # was it published since last notification?
             if last_date and runs[-1]['date'] < last_date:
-                break
+                continue
 
             # count it
             state = job.get_latest_executed_entry()
