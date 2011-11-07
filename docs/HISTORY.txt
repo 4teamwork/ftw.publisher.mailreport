@@ -16,15 +16,15 @@ Changelog
 1.1
 ---
 
-* Added portal url to mail.
+- Added portal url to mail.
   [jbaumann]
 
-* Translated configuration interval.
+- Translated configuration interval.
   [jbaumann]
 
 
 1.0
 ---
 
-* Initial release
+- Initial release
   [24.08.2010, jbaumann]
