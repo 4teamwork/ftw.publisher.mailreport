@@ -1,7 +1,7 @@
 ftw.publisher.mailreport
 ========================
 
-This package is an ``ftw.publisher``_ addon for sending scheduled
+This package is an `ftw.publisher`_ addon for sending scheduled
 publishing report mails.
 
 
