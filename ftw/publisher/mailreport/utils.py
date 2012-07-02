@@ -47,7 +47,7 @@ def get_interval_delta():
     """
     portal = getSite()
     interval = INotifierConfigurationSchema(portal).get_interval()
-    for key, label, delta in INTERVAL_CONFIG:
+    for key, _label, delta in INTERVAL_CONFIG:
         if key == interval:
             return delta
     return None

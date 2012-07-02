@@ -1,6 +1,7 @@
+from ftw.publisher.mailreport.interfaces import INotifierConfigurationSchema
 from ftw.publisher.mailreport.interfaces import IReportNotifier
 from ftw.publisher.mailreport.utils import is_interval_expired
-from ftw.publisher.mailreport.interfaces import INotifierConfigurationSchema
+from zope.component import getAdapter
 
 
 def invoke_notification(obj, event):
@@ -10,4 +11,4 @@ def invoke_notification(obj, event):
 
     config = INotifierConfigurationSchema(obj)
     if config.enabled and is_interval_expired():
-        return IReportNotifier(obj)()
+        return getAdapter(obj, IReportNotifier)()

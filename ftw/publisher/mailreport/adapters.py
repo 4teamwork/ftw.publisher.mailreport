@@ -78,7 +78,7 @@ class MailReportNotifier(object):
                 'portal': self.context}
 
         # count the jobs by group and total
-        for key, job in queue.get_executed_jobs():
+        for _key, job in queue.get_executed_jobs():
             # get the runs
             runs = getattr(job, 'executed_list', None)
             if not runs or len(runs) == 0:

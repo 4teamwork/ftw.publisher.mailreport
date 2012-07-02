@@ -1,6 +1,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from ftw.publisher.mailreport.interfaces import IReportNotifier
+from zope.component import getAdapter
 
 
 class TriggerNotification(BrowserView):
@@ -10,4 +11,4 @@ class TriggerNotification(BrowserView):
     def __call__(self):
         # get the notification adapter and call it
         portal = getToolByName(self.context, 'portal_url').getPortalObject()
-        return IReportNotifier(portal)()
+        return getAdapter(portal, IReportNotifier)()
