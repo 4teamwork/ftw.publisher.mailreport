@@ -1,7 +1,7 @@
 import unittest
 import doctest
 from Testing import ZopeTestCase as ztc
-from base import MailreportBasicTestCase
+from ftw.publisher.mailreport.tests.base import MailreportBasicTestCase
 
 OPTIONFLAGS = (doctest.NORMALIZE_WHITESPACE|
                doctest.ELLIPSIS|
