@@ -11,11 +11,10 @@ INTERVAL_CONFIG = (
     # stored value, label i18n key, datetime dict
     ('hourly', _(u'interval_hourly'), timedelta(hours=1)),
     ('daily',  _(u'interval_daily'),  timedelta(days=1)),
-    ('weekly', _(u'interval_weekly'), timedelta(days=7)),
-    )
+    ('weekly', _(u'interval_weekly'), timedelta(days=7)))
 
 
-INTERVAL_VOCABULARY = SimpleVocabulary([
-        SimpleTerm(key, title=_(label))
-        for key, label, td
-        in INTERVAL_CONFIG])
+INTERVAL_VOCABULARY = SimpleVocabulary(
+    [SimpleTerm(key, title=_(label))
+     for key, label, td
+     in INTERVAL_CONFIG])

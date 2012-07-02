@@ -1,8 +1,8 @@
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from ftw.publisher.mailreport.interfaces import IReportNotifier
-    
-    
+
+
 class TriggerNotification(BrowserView):
     """This view triggers the notification.
     """
