@@ -1,11 +1,43 @@
-Introduction
-============
+ftw.publisher.mailreport
+========================
 
-This package is a plugin for the `ftw.publisher` products. It adds a
-confguration option to the `ftw.publisher` control panel.
+This package is an ``ftw.publisher``_ addon for sending scheduled
+publishing report mails.
 
-The package sends - when enabled - in a defined interval (e.g. each
-day) a statistics e-mail to the defined e-mail addresses.
-It`s attached to the `IQueueExecutedEvent` event of the
-`ftw.publisher.sender`, so no additional cronjob / ClockServer is
-required.
+
+Usage
+-----
+
+- Add ``ftw.publisher.mailreport`` to your buildout configuration on
+  the **editoral site** and run ``bin/buildout``:
+
+::
+
+    [instance]
+    eggs +=
+        ftw.publisher.sender
+        ftw.publisher.mailreport
+
+- Configure the report in the publisher control panel.
+
+
+
+Links
+-----
+
+- github project repository: https://github.com/4teamwork/ftw.publisher.mailreport
+- Main publisher github project repository: https://github.com/4teamwork/ftw.publisher.sender
+- Issue tracker: https://github.com/4teamwork/ftw.publisher.mailreport/issues
+- Package on pypi: http://pypi.python.org/pypi/ftw.publisher.mailreport
+- Continuous integration: https://jenkins.4teamwork.ch/search?q=ftw.publisher.mailreport
+
+
+Copyright
+---------
+
+This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
+
+``ftw.publisher.mailreport`` is licensed under GNU General Public License, version 2.
+
+
+.. _ftw.publisher: https://github.com/4teamwork/ftw.publisher.sender
