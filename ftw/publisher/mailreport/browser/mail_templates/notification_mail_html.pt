@@ -1,6 +1,6 @@
 <html i18n:domain="ftw.publisher.mailreport">
   <head>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <title></title>
   </head>
   <body>
@@ -59,7 +59,9 @@
           </tr>
           <tr>
             <th i18n:translate="th_data_length">Data length</th>
-            <td><span tal:replace="job/getSize" /> bytes</td>
+            <td i18n:translate="">
+              <span i18n:name="size" tal:replace="job/getSize" /> bytes
+            </td>
           </tr>
         </table>
 
