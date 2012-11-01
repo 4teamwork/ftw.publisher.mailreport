@@ -21,7 +21,7 @@
       />
 
   <adapter
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      for="*"
       provides="ftw.publisher.mailreport.interfaces.IReportNotifier"
       factory=".adapters.MailReportNotifier"
       />
