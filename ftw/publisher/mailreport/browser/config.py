@@ -53,6 +53,10 @@ def email_addresses_validator(value):
                       "\.)+[a-z]{2,6}|([0-9]{1,3}\.){3}[0-9]{1,3})$",
                       re.IGNORECASE)
 
+    if value is None:
+        # empty field is ok
+        return True
+
     addresses = value.strip().split('\n')
     for addr in addresses:
         addr = addr.strip()
