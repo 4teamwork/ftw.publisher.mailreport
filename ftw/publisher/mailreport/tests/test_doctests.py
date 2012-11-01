@@ -12,9 +12,6 @@ def test_suite():
     return unittest.TestSuite([
             # doctests in file bar.txt
             ztc.ZopeDocFileSuite(
-                'utils.txt', package='ftw.publisher.mailreport.tests',
-                test_class=MailreportBasicTestCase, optionflags=OPTIONFLAGS),
-            ztc.ZopeDocFileSuite(
                 'mailing.txt', package='ftw.publisher.mailreport.tests',
                 test_class=MailreportBasicTestCase, optionflags=OPTIONFLAGS),
             ztc.ZopeDocFileSuite(

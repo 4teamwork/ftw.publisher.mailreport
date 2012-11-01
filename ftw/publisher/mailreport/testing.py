@@ -32,7 +32,6 @@ class MailreportFunctionalLayer(BasePTCLayer):
 mailreport_functional_layer = MailreportFunctionalLayer(
     bases=[common_layer])
 
-
 class MailReportLayer(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE, )

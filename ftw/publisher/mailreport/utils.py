@@ -1,9 +1,9 @@
-from datetime import datetime
 from ftw.publisher.mailreport.config import INTERVAL_CONFIG
 from ftw.publisher.mailreport.config import LAST_NOTIFICATIONS_KEY
 from ftw.publisher.mailreport.interfaces import INotifierConfigurationSchema
 from zope.annotation.interfaces import IAnnotations
 from zope.app.component.hooks import getSite
+import datetime
 
 
 def is_interval_expired():
@@ -18,7 +18,7 @@ def is_interval_expired():
     # get the configurated interval timedelta
     delta = get_interval_delta()
     # is `lndate` + `delta` already past?
-    return lndate + delta < datetime.now()
+    return lndate + delta < datetime.datetime.now()
 
 
 def get_last_notification_date():
@@ -29,7 +29,7 @@ def get_last_notification_date():
     annotations = IAnnotations(portal)
     ttuple = annotations.get(LAST_NOTIFICATIONS_KEY)
     if ttuple:
-        return datetime(*ttuple)
+        return datetime.datetime(*ttuple)
     else:
         return None
 
@@ -39,7 +39,8 @@ def set_last_notification_date_to_now():
     """
     portal = getSite()
     annotations = IAnnotations(portal)
-    annotations[LAST_NOTIFICATIONS_KEY] = datetime.now().timetuple()[:6]
+    now = datetime.datetime.now()
+    annotations[LAST_NOTIFICATIONS_KEY] = now.timetuple()[:6]
 
 
 def get_interval_delta():
