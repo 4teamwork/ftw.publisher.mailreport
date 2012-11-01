@@ -14,9 +14,6 @@ def test_suite():
             ztc.ZopeDocFileSuite(
                 'mailing.txt', package='ftw.publisher.mailreport.tests',
                 test_class=MailreportBasicTestCase, optionflags=OPTIONFLAGS),
-            ztc.ZopeDocTestSuite(
-                'ftw.publisher.mailreport.browser.config',
-                test_class=MailreportBasicTestCase, optionflags=OPTIONFLAGS),
             ])
 
 if __name__ == '__main__':
