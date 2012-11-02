@@ -5,8 +5,6 @@ version = '2.0b1.dev0'
 maintainer = 'Jonas Baumann'
 
 tests_require = [
-    'collective.testcaselayer',
-    'Products.PloneTestCase',
     'plone.app.testing',
     'ftw.testing',
     'pyquery',
