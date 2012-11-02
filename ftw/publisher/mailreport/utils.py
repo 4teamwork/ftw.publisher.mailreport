@@ -52,7 +52,6 @@ def get_interval_delta():
     for key, _label, delta in INTERVAL_CONFIG:
         if key == interval:
             return delta
-    return None
 
 
 def email_addresses_validator(value):
