@@ -5,9 +5,13 @@ version = '2.0b1.dev0'
 maintainer = 'Jonas Baumann'
 
 tests_require = [
-    'plone.app.testing',
-    'ftw.testing',
     'pyquery',
+    'mocker',
+    'unittest2',
+    'ftw.testing',
+    'zope.configuration',
+    'plone.testing',
+    'plone.app.testing',
     ]
 
 
@@ -42,9 +46,28 @@ setup(name='ftw.publisher.mailreport',
 
       install_requires=[
         'setuptools',
-        'z3c.autoinclude',
-        'ftw.publisher.sender',
+
+        'zope.annotation',
+        'zope.app.component',
+        'zope.component',
+
+        'zope.formlib',
+        'zope.i18nmessageid',
+        'zope.interface',
+        'zope.schema',
+
+        'ZODB3',
+        'Zope2',
+
         'plone.fieldsets',
+        'plone.app.layout',
+        'Products.CMFCore',
+        'Products.CMFDefault',
+        'Products.CMFPlone',
+        'Plone',
+
+        'ftw.publisher.core',
+        'ftw.publisher.sender',
         ],
 
       tests_require=tests_require,
