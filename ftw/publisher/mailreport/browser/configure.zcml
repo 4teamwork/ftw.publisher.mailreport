@@ -4,27 +4,27 @@
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="ftw.publisher.mailreport">
 
-  <adapter factory=".config.NotifierConfigurationAdapter" />
+    <adapter factory=".config.NotifierConfigurationAdapter" />
 
-  <browser:page
-      name="publisher-notification-config"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      class=".config.NotificationConfigurationForm"
-      permission="cmf.ManagePortal"
-      />
+    <browser:page
+        name="publisher-notification-config"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".config.NotificationConfigurationForm"
+        permission="cmf.ManagePortal"
+        />
 
-  <browser:page
-      name="publisher-notification-trigger-notification"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      class=".notification.TriggerNotification"
-      permission="cmf.ManagePortal"
-      />
+    <browser:page
+        name="publisher-notification-trigger-notification"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".notification.TriggerNotification"
+        permission="cmf.ManagePortal"
+        />
 
-  <browser:page
-      name="publisher-notification-mail_notification_html"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      template="mail_templates/notification_mail_html.pt"
-      permission="zope2.View"
-      />
+    <browser:page
+        name="publisher-notification-mail_notification_html"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        template="mail_templates/notification_mail_html.pt"
+        permission="zope2.View"
+        />
 
 </configure>
