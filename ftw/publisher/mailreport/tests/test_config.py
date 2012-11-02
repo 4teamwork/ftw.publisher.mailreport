@@ -82,7 +82,7 @@ class TestConfig(TestCase):
         self.assertEqual(config.get_receivers(), [
                 'my@test.local', 'foo@bar.com'])
 
-    def test_receier_mail_validation(self):
+    def test_receiver_mail_validation(self):
         self.assertEqual(
             INotifierConfigurationSchema(self.portal).get_receivers(), [])
 
@@ -97,3 +97,10 @@ class TestConfig(TestCase):
 
         self.assertEqual(
             INotifierConfigurationSchema(self.portal).get_receivers(), [])
+
+    def test_cancel_form_redirects_to_publisher_config(self):
+        self.browser.open(self.config_url)
+        self.assertEqual(self.browser.url, self.config_url)
+
+        self.browser.getControl('Cancel').click()
+        self.assertEqual(self.browser.url, '%s/@@publisher-config' % self.portal_url)
