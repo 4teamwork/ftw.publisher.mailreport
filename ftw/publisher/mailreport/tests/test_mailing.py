@@ -1,4 +1,5 @@
 from Products.CMFCore.utils import getToolByName
+from ftw.publisher.core.states import ObjectNotFoundForMovingWarning
 from ftw.publisher.core.states import ObjectUpdatedState
 from ftw.publisher.core.states import UIDPathMismatchError
 from ftw.publisher.mailreport import utils
@@ -74,14 +75,20 @@ class TestEmailNotification(MockTestCase):
 
         super(TestEmailNotification, self).tearDown()
 
-    def suppose_job_was_executed(self, successful=True):
+    def suppose_job_was_executed(self, successful=False, error=False,
+                                 warning=False):
         """ Adds a job to the "executed" list
         """
 
-        if successful:
+        if error:
+            response = UIDPathMismatchError()
+        elif warning:
+            response = ObjectNotFoundForMovingWarning()
+        elif successful:
             response = ObjectUpdatedState()
         else:
-            response = UIDPathMismatchError()
+            raise TypeError('suppose_job_was_executed expects one '
+                            'positive keyword argument')
 
         job = Job('push', self.folder, self.user)
         job.executed_with_states({
@@ -110,7 +117,10 @@ class TestEmailNotification(MockTestCase):
         self.set_time(2)
         self.suppose_job_was_executed(successful=True)
         self.suppose_job_was_executed(successful=True)
-        self.suppose_job_was_executed(successful=False)
+        self.suppose_job_was_executed(error=True)
+        self.suppose_job_was_executed(warning=True)
+        self.suppose_job_was_executed(warning=True)
+        self.suppose_job_was_executed(warning=True)
 
         self.set_time(3)
         self.assertTrue(utils.is_interval_expired())
@@ -131,10 +141,13 @@ class TestEmailNotification(MockTestCase):
         self.assertIn('<tr><th>Successfull jobs:</th><td>2</td></tr>',
                       statistics_table)
 
+        self.assertIn('<tr><th>Jobs with warning:</th><td>3</td></tr>',
+                      statistics_table)
+
         self.assertIn('<tr><th>Jobs with errors:</th><td>1</td></tr>',
                       statistics_table)
 
-        self.assertIn('<tr><th>Total executed jobs:</th><td>3</td></tr>',
+        self.assertIn('<tr><th>Total executed jobs:</th><td>6</td></tr>',
                       statistics_table)
 
     def test_report_does_only_contain_new_jobs(self):
