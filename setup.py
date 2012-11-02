@@ -9,6 +9,7 @@ tests_require = [
     'Products.PloneTestCase',
     'plone.app.testing',
     'ftw.testing',
+    'pyquery',
     ]
 
 
