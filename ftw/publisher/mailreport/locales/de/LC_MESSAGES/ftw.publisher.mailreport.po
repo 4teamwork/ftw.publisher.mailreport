@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-01-13 12:54+0000\n"
+"POT-Creation-Date: 2012-11-02 16:32+0000\n"
 "PO-Revision-Date: 2011-01-13 13:55+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,114 +13,114 @@ msgstr ""
 "Domain: DOMAIN\n"
 
 #. Default: "Cancel"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/config.py:150
+#: ./ftw/publisher/mailreport/browser/config.py:110
 msgid "button_cancel"
 msgstr "Abbrechen"
 
 #. Default: "Save"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/config.py:135
+#: ./ftw/publisher/mailreport/browser/config.py:95
 msgid "button_save"
 msgstr "Speichern"
 
 #. Default: "At least one of the defined addresses are not valid."
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/config.py:140
+#: ./ftw/publisher/mailreport/browser/config.py:100
 msgid "error_invalid_addresses"
 msgstr "Mindestens eine der angegebenen E-Mail Adressen ist ungültig."
 
 #. Default: "Include details of erroneous jobs."
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:25
+#: ./ftw/publisher/mailreport/interfaces.py:25
 msgid "help_detailed_report"
 msgstr "Fehlermeldungen der fehlerhaften Aufträge anzeigen."
 
 #. Default: "Approximate notification interval. The notification is attached to the publisher execute job."
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:31
+#: ./ftw/publisher/mailreport/interfaces.py:31
 msgid "help_interval"
 msgstr "Ungefähres Intervall, in welchem die Statistiken verschickt werden. Dieses Intervall ist abhängig vom Intervall, in dem die Warteschleife abgearbeitet wird."
 
 #. Default: "Publisher notification configuration"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/config.py:129
+#: ./ftw/publisher/mailreport/browser/config.py:85
 msgid "help_notifier_configuration"
 msgstr "Konfiguration der Benachrichtigungen"
 
 #. Default: "Enter one e-mail address per line."
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:39
+#: ./ftw/publisher/mailreport/interfaces.py:39
 msgid "help_receivers"
 msgstr "Eine E-Mail Adresse pro Zeile"
 
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/config.py:13
+#: ./ftw/publisher/mailreport/config.py:13
 msgid "interval_daily"
 msgstr "Täglich"
 
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/config.py:12
+#: ./ftw/publisher/mailreport/config.py:12
 msgid "interval_hourly"
 msgstr "Stündlich"
 
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/config.py:14
+#: ./ftw/publisher/mailreport/config.py:14
 msgid "interval_weekly"
 msgstr "Wöchentlich"
 
 #. Default: "Detailed report"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:23
+#: ./ftw/publisher/mailreport/interfaces.py:23
 msgid "label_detailed_report"
 msgstr "Datillierter Rapport"
 
 #. Default: "Interval"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:29
+#: ./ftw/publisher/mailreport/interfaces.py:29
 msgid "label_interval"
 msgstr "Intervall"
 
 #. Default: "Notification enabled"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:19
+#: ./ftw/publisher/mailreport/interfaces.py:19
 msgid "label_notification_enabled"
 msgstr "Benachrichtigung aktiviert"
 
 #. Default: "Notifier configuration"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/config.py:127
+#: ./ftw/publisher/mailreport/browser/config.py:83
 msgid "label_notifier_configuration"
 msgstr "Konfiguration der Benachrichtigungen"
 
 #. Default: "Receivers"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/interfaces.py:38
+#: ./ftw/publisher/mailreport/interfaces.py:38
 msgid "label_receivers"
 msgstr "Empfänger"
 
 #. Default: "Notifier configuration"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/viewlets/link.pt:3
+#: ./ftw/publisher/mailreport/viewlets/link.pt:3
 msgid "link_notifier_configuration"
 msgstr "Konfiguration der Benachrichtigungen"
 
 #. Default: "Erroneous jobs details"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:35
+#: ./ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:38
 msgid "mail_headline_details"
 msgstr "Details zu den fehlgeschlagenen Aufträgen"
 
 #. Default: "Publisher report: ${site}"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/adapters.py:54
+#: ./ftw/publisher/mailreport/adapters.py:55
 msgid "mail_subject"
 msgstr "Publisher Statistiken: ${site}"
 
 #. Default: "Jobs with errors:"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:20
+#: ./ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:23
 msgid "mail_th_error"
 msgstr "Aufträge mit Fehler:"
 
 #. Default: "Jobs in the queue:"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:28
+#: ./ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:31
 msgid "mail_th_jobs_in_queue"
 msgstr "Aufträge in der Warteschleife (momentan)"
 
 #. Default: "Successfull jobs:"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:12
+#: ./ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:15
 msgid "mail_th_success"
 msgstr "Erfolgreiche Aufträge"
 
 #. Default: "Total executed jobs:"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:24
+#: ./ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:27
 msgid "mail_th_total"
 msgstr "Insgesammt ausgeführte Aufträge"
 
 #. Default: "Jobs with warning:"
-#: ftw.publisher.mailreport/ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:16
+#: ./ftw/publisher/mailreport/browser/mail_templates/notification_mail_html.pt:19
 msgid "mail_th_warning"
 msgstr "Aufträge mit Warnungen:"
 
