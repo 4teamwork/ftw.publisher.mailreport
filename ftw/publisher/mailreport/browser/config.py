@@ -17,7 +17,7 @@ from zope.interface import implements
 ANNOTATIONS_KEY = 'ftw.publisher.mailqueue-configuration'
 
 
-class NotifierConfigurationAdapter(SchemaAdapterBase):
+class NotifierConfigurationAdapter(SchemaAdapterBase, object):
     """Stores the notifier configuration
     """
 
@@ -87,6 +87,10 @@ class NotificationConfigurationForm(FieldsetsEditForm):
 
     form_name = label
     form_fields = form.FormFields(INotifierConfigurationSchema)
+
+    def __init__(self, *args, **kwargs):
+        super(NotificationConfigurationForm, self).__init__(*args, **kwargs)
+        self.status = None
 
     @form.action(_(u'button_save', default=u'Save'))
     def handle_edit_action(self, action, data):
