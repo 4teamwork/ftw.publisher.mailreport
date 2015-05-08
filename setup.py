@@ -35,7 +35,7 @@ setup(name='ftw.publisher.mailreport',
         ],
 
       keywords='ftw publisher mail report scheduled',
-      author='4teamwork GmbH',
+      author='4teamwork AG',
       author_email='mailto:info@4teamwork.ch',
       maintainer=maintainer,
       url='https://github.com/4teamwork/ftw.publisher.mailreport',
